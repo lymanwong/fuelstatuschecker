@@ -1,0 +1,10 @@
+#logoRound {
+	border-radius: 50%;
+	max-width: 25px;
+	max-height: 25px;
+}
+
+.me-auto {
+	padding-left: 15px;
+	color: red;
+}

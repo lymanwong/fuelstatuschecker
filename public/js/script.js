@@ -1,15 +1,18 @@
 const getFormData = () => {
 	let formValues = {};
 	formValues.storeName = $("#storeName").val();
-	// formValues.storeEmail = $("#storeEmail").val();
+	formValues.apikey = $("#apikey").val();
+	console.log(formValues);
 	return formValues; //returns {storeName: value, storeEmail: value}
 };
 
+let clearResults = () => {
+	$("#orderData").empty();
+	formValues = {};
+}
+
 const getStoreInfo = (formData) => {
 	storeData = [];
-	console.log(formData);
-	// console.log(fuelData[0]["Shopify Shop Name"]);
-
 	for (const key of Object.keys(fuelData)){
 		// console.log(`${key} => ${fuelData[key]["Shopify Shop Name"]}`);
 		if (formData.storeName == fuelData[key]["Shopify Shop Name"]) {
@@ -24,5 +27,21 @@ const getStoreInfo = (formData) => {
 				`);
 		}
 	}
+	if (storeData.length < 1) {
+		let toastTrigger = document.getElementById('liveToastBtn');
+		let toastLive = document.getElementById('liveToast');
+		let toast = new bootstrap.Toast(toastLive);
+		toast.show();
+	} else {
 	$("#orderData").append(storeData);
+	}
 };
+
+const checkResponseStatus = (res) => {
+    if(res.ok){
+        return res
+    } else {
+        throw new Error(`The HTTP status of the reponse: ${res.status} (${res.statusText})`);
+    }
+}
+

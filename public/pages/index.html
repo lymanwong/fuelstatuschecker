@@ -9,6 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css" rel="stylesheet">
 
   <title>Fuel Order Status Checker</title>
 </head>
@@ -35,14 +36,28 @@
             <form class="form">
               <div class="mb-3">
                 <label for="storeName" class="form-label">Store name</label>
-                <input type="text" class="form-control" id="storeName">
+                <input type="text" class="form-control" id="storeName" autocomplete="on" placeholder="myStoreName" required>
               </div>
-<!--               <div class="mb-3">
-                <label for="storeEmail" class="form-label">Email address associated with your Fuel store</label>
-                <input type="email" class="form-control" id="storeEmail" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              </div> -->
+              <div class="mb-3">
+                <label for="apikey" class="form-label">Store API key</label>
+                <input type="text" class="form-control" id="apikey" autocomplete="on" placeholder="123456789" required>
+              </div>
+            <div class="position-absolute top-50 start-50 translate-middle p-3" style="z-index: 11">
+              <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                  <img src="./images/logo.jpg" id="logoRound" alt="Fuel logo">
+                  <strong class="me-auto"> Warning</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                  We did not find an order with that store name. Please verify that you've entered it correctly.
+                </div>
+              </div>
+            </div>
+            <div class="d-grid gap-2 d-md-block">
               <button id="formButton" type="submit" class="btn btn-primary">Submit</button>
+              <button id="empty" type="reset" onclick="clearResults()" class="btn btn-success">New Search</button>
+            </div>
             </form>
           </div>
         </div>
@@ -57,36 +72,19 @@
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
           data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <object width="100%" height="800px" data="https://uploads-ssl.webflow.com/5cd1ec61019182b8c397365d/61b13305714f14aae2ace5c7_DTG%20Action%20Descriptions.pdf"></object>
+            <object width="100%" height="800px" data="https://uploads-ssl.webflow.com/5cd1ec61019182b8c397365d/61c0d5c8cde9f7c353048737_fuelStatusDefinitions.pdf#view=FitH"></object>
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Accordion Item #3
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-          data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin
-            adds the appropriate classes that we use to style each element. These classes control the overall
-            appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-            CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-            <code>.accordion-body</code>, though the transition does limit overflow.
-          </div>
-        </div>
-      </div>
+    </div>
+  </div> <!-- Closing container -->
+  <br/>
+  <div class="jumbotron jumbotron-fluid">
+  <div class="container">
     <h3>Results</h3>
     <div id="orderData">
-
-
-    </div>
-
-  </div> <!-- Closing container -->
-
+  </div>
+</div>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -100,8 +98,9 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="https://uploads-ssl.webflow.com/5cd1ec61019182b8c397365d/61b004f9e611db57cca81ee8_fuelData.txt"></script>
-  <script type="text/javascript" src="https://uploads-ssl.webflow.com/5cd1ec61019182b8c397365d/61b131aeef55e1ceb0917651_dtgActions.txt"></script>
+  <script type="text/javascript" src="https://uploads-ssl.webflow.com/5cd1ec61019182b8c397365d/622258d5a4bee698e4275480_fakeFuelData.txt"
+></script>
+  <script type="text/javascript" src="https://uploads-ssl.webflow.com/5cd1ec61019182b8c397365d/61e0a3f49046d697fcee9ce7_dtgActions.txt"></script>
 </body>
 
 </html>

@@ -3,6 +3,5 @@
 		event.preventDefault();
 		let formData = getFormData();
 		getStoreInfo(formData);
-	});
-
+	})
 }(jQuery));
